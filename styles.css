@@ -1,0 +1,75 @@
+/* ==========================================================
+   Luminex Energy Solutions — custom styles
+   These rules extend the Tailwind utility classes used in
+   index.html (animations, buttons, header states, etc).
+   ========================================================== */
+
+html { -webkit-text-size-adjust: 100%; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #161A1D; background: #FFFFFF; -webkit-font-smoothing: antialiased; }
+
+  /* Focus states for accessibility */
+  :focus-visible { outline: 3px solid #E5A23C; outline-offset: 3px; border-radius: 4px; }
+
+  /* Skip link */
+  .skip-link { position: absolute; left: 1rem; top: -100px; z-index: 100; background: #0B2E4F; color: #fff; padding: .75rem 1rem; border-radius: 8px; font-weight: 600; transition: top .2s; }
+  .skip-link:focus { top: 1rem; }
+
+  /* Reveal animations */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1); }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .3s; }
+  .reveal-delay-4 { transition-delay: .4s; }
+  .reveal-delay-5 { transition-delay: .5s; }
+
+  /* Hero */
+  .hero-img { transform: scale(1.06); animation: heroZoom 14s ease-out forwards; }
+  @keyframes heroZoom { to { transform: scale(1); } }
+  .hero-fade { animation: fadeUp 1s cubic-bezier(.22,.61,.36,1) both; }
+  .hero-fade-1 { animation-delay: .15s; }
+  .hero-fade-2 { animation-delay: .35s; }
+  .hero-fade-3 { animation-delay: .55s; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: none;} }
+
+  /* Card image hover */
+  .card-img { transition: transform .8s cubic-bezier(.22,.61,.36,1); }
+  .group:hover .card-img { transform: scale(1.04); }
+
+  /* Scroll snap (mobile services) */
+  .snap-row { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .snap-row::-webkit-scrollbar { display: none; }
+  .snap-item { scroll-snap-align: start; }
+
+  /* Marquee strip */
+  .marquee { display: flex; width: max-content; animation: marquee 34s linear infinite; }
+  @keyframes marquee { from { transform: translateX(0);} to { transform: translateX(-50%);} }
+  .marquee:hover { animation-play-state: paused; }
+
+  /* Header state */
+  .header-scrolled { box-shadow: 0 1px 0 rgba(22,26,29,.08), 0 8px 24px -16px rgba(11,46,79,.25); }
+
+  /* Mobile nav */
+  #mobileMenu { transition: opacity .3s ease, transform .3s ease; }
+  #mobileMenu[data-open="false"] { opacity: 0; transform: translateY(-8px); pointer-events: none; }
+  #mobileMenu[data-open="true"] { opacity: 1; transform: none; pointer-events: auto; }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 48px; padding: 0 1.5rem; border-radius: 999px; font-weight: 600; letter-spacing: .01em; transition: transform .2s ease, background-color .2s ease, color .2s ease, box-shadow .2s ease; }
+  .btn:active { transform: scale(.98); }
+  .btn-primary { background: #1E6B4E; color: #fff; box-shadow: 0 10px 24px -12px rgba(30,107,78,.6); }
+  .btn-primary:hover { background: #15523B; }
+  .btn-light { background: #fff; color: #0B2E4F; }
+  .btn-light:hover { background: #F5F2EC; }
+  .btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.7); }
+  .btn-ghost:hover { background: rgba(255,255,255,.12); }
+
+  .underline-slide { position: relative; }
+  .underline-slide::after { content:''; position:absolute; left:0; bottom:-4px; height:2px; width:0; background:#1E6B4E; transition: width .3s ease; }
+  .underline-slide:hover::after, .underline-slide:focus-visible::after { width: 100%; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+    .reveal { opacity: 1; transform: none; }
+    .hero-img { transform: none; }
+  }
